@@ -67,7 +67,7 @@ $worker->registerAddress = 'register:1236';
 ```
 
 
-打包代码（别忘记 compser install 一下先）：
+打包代码（别忘记 composer install 一下先）：
 ```dockerfile
 FROM cloudbeer/workerman-base:1.0
 RUN mkdir /app
