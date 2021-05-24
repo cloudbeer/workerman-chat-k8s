@@ -1,0 +1,31 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workerman-chat-businessworker
+  namespace: workerman
+  labels: 
+    app: workerman-chat-businessworker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workerman-chat-businessworker
+  template:
+    metadata:
+      labels:
+        app: workerman-chat-businessworker
+    spec:
+      containers:
+      # fpm app
+      - name: caculate
+        image: cloudbeer/workerman-code:1.0
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        command: [php, /app/Applications/Chat/start_businessworker.php, start]
+

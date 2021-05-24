@@ -1,0 +1,48 @@
+
+# 部署具体应用
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workerman-chat-gateway
+  namespace: workerman
+  labels: 
+    app: workerman-chat-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workerman-chat-gateway
+  template:
+    metadata:
+      labels:
+        app: workerman-chat-gateway
+    spec:
+      containers:
+      - name: gateway
+        image: cloudbeer/workerman-code:1.0
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        ports:
+        - containerPort: 7272
+          protocol: TCP
+        command: [php, /app/Applications/Chat/start_gateway.php, start]
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: gateway
+    namespace: workerman
+spec:
+    type: LoadBalancer
+    selector:
+        app: workerman-chat-gateway
+    ports:
+        - protocol: TCP
+          port: 7272
+          targetPort: 7272
+

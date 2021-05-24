@@ -1,0 +1,47 @@
+
+# 部署具体应用
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workerman-chat-register
+  namespace: workerman
+  labels: 
+    app: workerman-chat-register
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: workerman-chat-register
+  template:
+    metadata:
+      labels:
+        app: workerman-chat-register
+    spec:
+      containers:
+      - name: register
+        image: cloudbeer/workerman-code:1.0
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        ports:
+        - containerPort: 1236
+          protocol: TCP
+        command: [php, /app/Applications/Chat/start_register.php, start]
+---
+# nginx service deploy
+apiVersion: v1
+kind: Service
+metadata:
+    name: register
+    namespace: workerman
+spec:
+    selector:
+      app: workerman-chat-register
+    ports:
+    - protocol: TCP
+      port: 1236
+      targetPort: 1236
