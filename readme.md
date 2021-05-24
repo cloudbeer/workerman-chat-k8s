@@ -198,8 +198,7 @@ spec:
         app: workerman-chat-businessworker
     spec:
       containers:
-      # fpm app
-      - name: caculate
+      - name: businessworker
         image: cloudbeer/workerman-code:1.0
         resources:
           requests:
