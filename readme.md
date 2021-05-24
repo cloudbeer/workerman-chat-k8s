@@ -111,7 +111,6 @@ spec:
           protocol: TCP
         command: [php, /app/Applications/Chat/start_register.php, start]
 ---
-# nginx service deploy
 apiVersion: v1
 kind: Service
 metadata:
@@ -181,7 +180,6 @@ spec:
 ## 4 部署 businessworker
 businessworker 在内部工作，只需要部署 pod 即可。
 ```yaml
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
