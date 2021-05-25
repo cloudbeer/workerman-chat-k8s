@@ -1,6 +1,6 @@
-# 在 k8s 里部署 workman-chat
+# 在 k8s 里部署 workerman-chat
 
-## 0 workman 介绍
+## 0 workerman 介绍
 Workerman 是一个 PHP 编写的高性能的 socket 服务器通讯框架，用于快速开发各种网络应用，包括tcp的、udp的、长连接、短连接应用。
 
 
