@@ -1,20 +1,24 @@
 # 在 k8s 里部署 workman-chat
 
 ## 0 workman 介绍
-Workerman是一个高性能的 socket 服务器通讯框架，用于快速开发各种网络应用，包括tcp的、udp的、长连接、短连接应用。
+Workerman 是一个 PHP 编写的高性能的 socket 服务器通讯框架，用于快速开发各种网络应用，包括tcp的、udp的、长连接、短连接应用。
 
 
-但他的官网并未提供 k8s 部署教程。下面咱们来用 K8S 部署一下 workerman-chat，他的源代码在 [https://github.com/walkor/workerman-chat](https://github.com/walkor/workerman-chat)。
+但他的官网并未提供 K8S 部署教程。下面咱们来用 K8S 部署一下 workerman-chat，他的源代码在 [https://github.com/walkor/workerman-chat](https://github.com/walkor/workerman-chat)。
 
 
-本教程的包含了他的源代码，但修改了部分代码，修改处会在下文中说明，地址在 [https://github.com/cloudbeer/workerman-chat-k8s](https://github.com/cloudbeer/workerman-chat-k8s)
+本教程的包含了他的源代码（仅作为示例代码保存，代码版权属于原作者，正式部署请至 Workerman 官方下载），修改了部分代码，修改处会在下文中说明。
+
+本文的 git 地址在 [https://github.com/cloudbeer/workerman-chat-k8s](https://github.com/cloudbeer/workerman-chat-k8s)
 
 
 我们将按照如下的架构部署：
 ![image.png](./arche.png)
 
 
-docker 镜像均已经上传到 hub.docker.com，可以在腾讯云 TKE 中直接运行。部署脚本如下：
+docker 镜像均已经上传到 hub.docker.com，本文的脚本可以在腾讯云 TKE 中直接运行。
+
+部署脚本如下：
 ```shell
 kubectl apply -f ns.yaml
 kubectl apply -f register.yaml
